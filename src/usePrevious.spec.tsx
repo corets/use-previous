@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { usePrevious } from "./usePrevious"
-import { mount } from "enzyme"
-import { act } from "react-dom/test-utils"
+import { fireEvent, render, screen } from "@testing-library/react"
 
 describe("usePrevious", () => {
   it("uses previous value", () => {
@@ -17,21 +16,18 @@ describe("usePrevious", () => {
       )
     }
 
-    const wrapper = mount(<Test />)
-    const target = () => wrapper.find("button")
+    render(<Test />)
 
-    expect(target().text()).toBe("0,undefined")
+    const target = screen.getByRole("button")
 
-    act(() => {
-      target().simulate("click")
-    })
+    expect(target).toHaveTextContent("0,undefined")
 
-    expect(target().text()).toBe("1,0")
+    fireEvent.click(target)
 
-    act(() => {
-      target().simulate("click")
-    })
+    expect(target).toHaveTextContent("1,0")
 
-    expect(target().text()).toBe("2,1")
+    fireEvent.click(target)
+
+    expect(target).toHaveTextContent("2,1")
   })
 })
