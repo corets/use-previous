@@ -21,7 +21,7 @@
     "/dist"
   ],
   "repository": "github:corets/use-previous",
-  "homepage": "https://corets.github.io/use-previous",
+  "homepage": "https://docs.corets.io/hooks/use-previous",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
